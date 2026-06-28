@@ -21,7 +21,7 @@ jobs:
       - name: Unzip mod source
         run: unzip weaponsmod_source.zip
       - name: Build mod
-        run: cd weaponsmod && gradle build --no-daemon
+        run: gradle build --no-daemon -p weaponsmod
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
