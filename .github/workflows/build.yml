@@ -8,22 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Java 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
       - name: Unzip mod source
-        run: |
-          unzip weaponsmod_source.zip -d mod_extracted
-          cp -r mod_extracted/weaponsmod/. ./
+        run: unzip weaponsmod_source.zip
       - name: Make gradlew executable
-        run: chmod +x ./weaponsmod/gradlew || chmod +x gradlew || true
+        run: chmod +x weaponsmod/gradlew
       - name: Build mod
-        run: ./gradlew build --no-daemon
+        run: cd weaponsmod && ./gradlew build --no-daemon
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: weaponsmod-jar
-          path: build/libs/weaponsmod-*.jar
+          path: weaponsmod/build/libs/weaponsmod-*.jar
