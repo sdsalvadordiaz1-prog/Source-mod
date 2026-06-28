@@ -14,12 +14,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.4'
       - name: Unzip mod source
         run: unzip weaponsmod_source.zip
-      - name: Make gradlew executable
-        run: chmod +x weaponsmod/gradlew
       - name: Build mod
-        run: cd weaponsmod && ./gradlew build --no-daemon
+        run: cd weaponsmod && gradle build --no-daemon
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
