@@ -20,7 +20,7 @@ jobs:
           gradle-version: '8.4'
       - name: Unzip mod source
         run: |
-          unzip unzip weaponsmod_updated.zip
+          unzip weaponsmod_updated.zip
           cp settings.gradle weaponsmod/settings.gradle
       - name: Build mod
         run: gradle build --no-daemon -p weaponsmod
