@@ -19,7 +19,7 @@ jobs:
           unzip weaponsmod_source.zip -d mod_extracted
           cp -r mod_extracted/weaponsmod/. ./
       - name: Make gradlew executable
-        run: chmod +x gradlew
+        run: chmod +x ./weaponsmod/gradlew || chmod +x gradlew || true
       - name: Build mod
         run: ./gradlew build --no-daemon
       - name: Upload JAR
